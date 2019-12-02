@@ -3,3 +3,27 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* General Layout Styling */
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.containerTop {
+    height: 120px;
+    background-color: #1ebea5;
+}
+.containerBottom {
+    height: calc(100vh - 120px);
+    background-color: lightgrey;
+}
+.mainPage {
+    background-color: white;
+    height: 90%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* end General styling Layout */
