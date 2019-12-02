@@ -9,3 +9,16 @@
 // dall’interlocutore (bianco) assegnando due classi CSS diverse
 // ● Aggiunta di un messaggio : l’utente scrive un testo nella parte bassa e cliccando
 // invia il testo viene aggiunto al thread sopra, come messaggio verde
+
+
+// var ricevuto = $('.template').clone();
+// ricevuto.removeClass('none');
+// ricevuto.addClass('received');
+//
+// $('.chatWindow').append(ricevuto);
+
+var inviato = $('.template').clone();
+inviato.removeClass('none');
+inviato.addClass('sent');
+
+$('.chatWindow').append(inviato);
