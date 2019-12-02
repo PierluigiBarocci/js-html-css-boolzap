@@ -25,13 +25,12 @@ $('.chatWindow').append(ricevuto);
 
 
 // andiamo a cercarci il valore dell'input
-var inviato = $('.template').clone();
+
 $('#sendButton').click(function(){
+    var inviato = $(ricevuto).clone();
     var testo = $('#textBox').val();
     console.log(testo);
-    inviato.removeClass('none');
-    inviato.addClass('sent');
-    inviato.text(testo);
+    inviato.removeClass('received').addClass('sent').text(testo);
     $('.chatWindow').append(inviato);
     $('#textBox').val('');
 })
