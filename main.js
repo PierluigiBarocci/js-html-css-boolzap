@@ -134,7 +134,7 @@ function mySearching() {
                 allFather.hide();
             } else {
                 // altrimenti prosegui e mostra corrispondenze
-                $(this).show();
+                allFather.show();
             };
         });
     } else {
