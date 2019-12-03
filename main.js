@@ -10,27 +10,35 @@
 // ● Aggiunta di un messaggio : l’utente scrive un testo nella parte bassa e cliccando
 // invia il testo viene aggiunto al thread sopra, come messaggio verde
 
+// invia messaggio, intercettando click sul bottone
+$('.icons').click (function(){
+    mySend();
+});
 
-var ricevuto = $('.template').clone();
-ricevuto.removeClass('none');
-ricevuto.addClass('received');
-
-$('.chatWindow').append(ricevuto);
-
-// var inviato = $('.template').clone();
-// inviato.removeClass('none');
-// inviato.addClass('sent');
-//
-// $('.chatWindow').append(inviato);
-
-
-// andiamo a cercarci il valore dell'input
-
-$('#sendButton').click(function(){
-    var inviato = $(ricevuto).clone();
-    var testo = $('#textBox').val();
-    console.log(testo);
-    inviato.removeClass('received').addClass('sent').text(testo);
-    $('.chatWindow').append(inviato);
-    $('#textBox').val('');
+// invia messaggio, intercettando il tasto invio
+$('#textBox').keypress(function (event){
+    if (event.which == 13) {
+        mySend();
+    }
 })
+
+
+// creo una funzione per creare un messagio sent da richiamare ogni volta
+
+function mySend() {
+    // intercetto il valore dell'input
+    var testo = $('#textBox').val();
+    // se il valore dell'input c'e` (quindi non è vuoto)
+    if (testo.length != 0) {
+        // clono il template messages
+        var new_msg = $('.template .message').clone();
+        // inserisco nello span giusto il testo
+        new_msg.children('.message-text').text(testo);
+        // aggiungo al div la classe send
+        new_msg.addClass('sent');
+        // inserisco il messaggio nel container
+        $('.right-messages.active').append(new_msg);
+        // resetto il valore di input
+        $('#textBox').val('');
+    };
+}
