@@ -11,16 +11,33 @@
 // invia il testo viene aggiunto al thread sopra, come messaggio verde
 
 // invia messaggio, intercettando click sul bottone
-$('.icons').click (function(){
+$('.icons').click(function(){
     mySend();
 });
 
 // invia messaggio, intercettando il tasto invio
-$('#textBox').keypress(function (event){
+$('#textBox').keypress(function(event){
     if (event.which == 13) {
         mySend();
     }
 })
+
+// cambio dell'ico in paper pulsante
+// keyup si attiva quando sollevo il dito dal tasto
+$('#textBox').keyup(function(){
+    // intercetto valore di input
+    var testo = $('#textBox').val();
+    // se è presente del testo
+    if (testo.length != 0) {
+        // tolgo il mivrofono e metto il paper plane
+        $('.icons i').removeClass('fa-microphone fa-lg');
+        $('.icons i').addClass('fa-paper-plane fa-lg');
+    } else {
+        // faccio il contrario
+        $('.icons i').removeClass('fa-paper-plane fa-lg');
+        $('.icons i').addClass('fa-microphone fa-lg');
+    };
+});
 
 
 // creo una funzione per creare un messagio sent da richiamare ogni volta
