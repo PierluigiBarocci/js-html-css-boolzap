@@ -17,7 +17,37 @@
 // contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
 // “mar” rimangono solo Marco e Martina)
 
-// per ceare una risposta automatica:
+// ricerca utenti
+
+
+// intercetto clik pulsant lente
+$('.searchIcon').click(function(){
+    // prendo il val(dell'input)
+    var inputName = $('#searchFriends').val();
+    // per ogni elemento nome devo svolgere un azione, mi serve un each
+    $('.contactName .account').each(function(){
+        // leggo il nome (per ogni elemento account)
+        var friendName = $(this).text();
+        // avendo costruito un layout senza considerare dove saremmo andati a parare
+        // ho fatto un albero di figli e sotto figli per la sezione account
+        // mi creo una variabile maestra per tornare in cima all'albero
+        var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
+        // se il nome cercato trova corrispondenza identica nella mia lista
+        // il lowercase lo uso per rendere la ricerca sempre attuabile,
+        // senza fermarsi a lettere minuscole o maiuscole
+        if (inputName.toLocaleLowerCase() == friendName.toLocaleLowerCase()) {
+            // mostramelo
+            $(this).show();
+            allFather.addClass('active');
+        } else {
+            // altrimenti nascondi
+            // se mettessi solo this, cancellerebbe solo il nome,
+            // ho creato una variabile per risalire l'albero
+            allFather.hide();
+        }
+    })
+})
+
 
 
 
