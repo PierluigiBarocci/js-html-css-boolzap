@@ -86,6 +86,10 @@
     height: 100%;
     border: none;
 }
+.myHistory {
+    height: calc(100% - 180px);
+    overflow-y: auto;
+}
 .myFriend {
     height: 60px;
     width: 100%;
