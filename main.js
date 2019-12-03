@@ -22,32 +22,15 @@
 
 // intercetto clik pulsant lente
 $('.searchIcon').click(function(){
-    // prendo il val(dell'input)
-    var inputName = $('#searchFriends').val();
-    // per ogni elemento nome devo svolgere un azione, mi serve un each
-    $('.contactName .account').each(function(){
-        // leggo il nome (per ogni elemento account)
-        var friendName = $(this).text();
-        // avendo costruito un layout senza considerare dove saremmo andati a parare
-        // ho fatto un albero di figli e sotto figli per la sezione account
-        // mi creo una variabile maestra per tornare in cima all'albero
-        var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
-        // se il nome cercato trova corrispondenza identica nella mia lista
-        // il lowercase lo uso per rendere la ricerca sempre attuabile,
-        // senza fermarsi a lettere minuscole o maiuscole
-        if (inputName.toLocaleLowerCase() == friendName.toLocaleLowerCase()) {
-            // mostramelo
-            $(this).show();
-            allFather.addClass('active');
-        } else {
-            // altrimenti nascondi
-            // se mettessi solo this, cancellerebbe solo il nome,
-            // ho creato una variabile per risalire l'albero
-            allFather.hide();
-        }
-    })
+    mySearching();
 })
 
+// intercetto invio su input ricerca contatti
+$('#searchFriends').keypress(function(event){
+    if (event.which == 13) {
+        mySearching();
+    };
+});
 
 
 
@@ -85,7 +68,9 @@ $('#textBox').keyup(function(){
 });
 
 
-// creo una funzione per creare un messagio sent da richiamare ogni volta
+//  FUNZIONI //
+
+// funzione per creare un messagio sent da richiamare ogni volta
 
 function mySend() {
     // intercetto il valore dell'input
@@ -103,9 +88,10 @@ function mySend() {
         // resetto il valore di input
         $('#textBox').val('');
     };
-}
+};
 
-// creo una funzione per creare un messagio received da richiamare ogni volta
+// funzione per creare un messagio received da richiamare ogni volta
+
 function myAnswer() {
     // clono il template messages
     var new_msg = $('.template .message').clone();
@@ -115,4 +101,32 @@ function myAnswer() {
     new_msg.addClass('received');
     // inserisco il messaggio nel container
     $('.right-messages.active').append(new_msg);
+};
+
+// funzione per scorgere attraverso gli account e mostrare o nascondere le corrispondenze
+
+function mySearching() {
+    // prendo il val da input
+    var inputName = $('#searchFriends').val();
+    // per ogni elemento nome devo svolgere un azione
+    $('.contactName .account').each(function(){
+        // leggo il nome (per ogni elemento account)
+        var friendName = $(this).text();
+        // variabile maestra per tornare in cima all'albero dell'account
+        var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
+        // se il nome ha una lunghezza
+        if (inputName.length != 0) {
+            // se il nome cercato trova corrispondenza identica nella mia lista
+            if (inputName.toLocaleLowerCase() == friendName.toLocaleLowerCase()) {
+                // mostramelo
+                $(this).show();
+            } else {
+                // altrimenti nascondi tutto l'account
+                allFather.hide();
+            }
+        } else {
+            // se il nome non c'e`, mostrami tutti i contatti
+            $('.myFriend').show();
+        }
+    })
 }
