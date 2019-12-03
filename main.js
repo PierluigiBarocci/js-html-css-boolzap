@@ -18,47 +18,31 @@
 // “mar” rimangono solo Marco e Martina)
 
 // ricerca utenti
-
-// entra in gioco la keyup function
+// utilizzando la keyup function
+// la mySearching si svolge ogni volta che premo un tasto
 $('#searchFriends').keyup(function(){
-    // scrivo un lettera e ne prendo il valore
-    var testo = $('#searchFriends').val();
-    // se il nome ha una lunghezza
-    if (testo.length != 0) {
-        // inizio a leggere ogni nome
-        $('.contactName .account').each(function(){
-            // leggo il nome (per ogni elemento account)
-            var friendName = $(this).text();
-            // variabile maestra per tornare in cima all'albero dell'account
-            var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
-            // se quella lettera non è contenuta, nascondi account
-            if (!(friendName.toLocaleLowerCase()).includes(testo.toLocaleLowerCase())) {
-                allFather.hide();
-            } else {
-                // altrimenti prosegui e mostra corrispondenze
-                $(this).show();
-            };
-        });
-    } else {
-        // se il nome non c'e`, mostrami tutti i contatti
-        $('.myFriend').show();
-    }
-});
-
-
-
-
-// intercetto clik pulsante lente ricerca contatti
-$('.searchIcon').click(function(){
     mySearching();
-})
-
-// intercetto invio su input ricerca contatti
-$('#searchFriends').keypress(function(event){
-    if (event.which == 13) {
-        mySearching();
-    };
 });
+
+
+
+// arriva a questo punto la click e la keypress diventano inutili,
+// perchè la ricerca prosegue 'in live' con l'utente che digita
+// non le cancello, le lascio commentate
+
+
+
+// // intercetto clik pulsante lente ricerca contatti
+// $('.searchIcon').click(function(){
+//     mySearching();
+// })
+//
+// // intercetto invio su input ricerca contatti
+// $('#searchFriends').keypress(function(event){
+//     if (event.which == 13) {
+//         mySearching();
+//     };
+// });
 
 
 
@@ -136,25 +120,25 @@ function myAnswer() {
 function mySearching() {
     // prendo il val da input
     var inputName = $('#searchFriends').val();
-    // per ogni elemento nome devo svolgere un azione
-    $('.contactName .account').each(function(){
-        // leggo il nome (per ogni elemento account)
-        var friendName = $(this).text();
-        // variabile maestra per tornare in cima all'albero dell'account
-        var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
-        // se il nome ha una lunghezza
-        if (inputName.length != 0) {
-            // se il nome cercato trova corrispondenza identica nella mia lista
-            if (inputName.toLocaleLowerCase() == friendName.toLocaleLowerCase()) {
-                // mostramelo
-                $(this).show();
-            } else {
-                // altrimenti nascondi tutto l'account
+    console.log(inputName);
+    // se il nome ha una lunghezza
+    if (inputName.length != 0) {
+        // inizio a leggere ogni nome
+        $('.contactName .account').each(function(){
+            // leggo il nome (per ogni elemento account)
+            var friendName = $(this).text();
+            // variabile maestra per tornare in cima all'albero dell'account
+            var allFather = $(this).parent('.contactName').parent('.contactText').parent('.myFriend');
+            // se quella lettera non è contenuta, nascondi account
+            if (!(friendName.toLocaleLowerCase()).includes(inputName.toLocaleLowerCase())) {
                 allFather.hide();
-            }
-        } else {
-            // se il nome non c'e`, mostrami tutti i contatti
-            $('.myFriend').show();
-        }
-    })
+            } else {
+                // altrimenti prosegui e mostra corrispondenze
+                $(this).show();
+            };
+        });
+    } else {
+        // se il nome non c'e`, mostrami tutti i contatti
+        $('.myFriend').show();
+    }
 }
