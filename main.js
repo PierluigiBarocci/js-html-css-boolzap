@@ -10,19 +10,34 @@
 // ● Aggiunta di un messaggio : l’utente scrive un testo nella parte bassa e cliccando
 // invia il testo viene aggiunto al thread sopra, come messaggio verde
 
+// Milestone 2
+// ● Risposta dall’interlocutore: ad ogni inserimento di un messaggio, l’utente riceverà
+// un “ok” come risposta, che apparirà dopo 1 secondo.
+// ● Ricerca utenti: scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i
+// contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
+// “mar” rimangono solo Marco e Martina)
+
+// per ceare una risposta automatica:
+
+
+
 // invia messaggio, intercettando click sul bottone
 $('.icons').click(function(){
     mySend();
+    // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
+    setTimeout(myAnswer, 1000);
 });
 
 // invia messaggio, intercettando il tasto invio
 $('#textBox').keypress(function(event){
     if (event.which == 13) {
         mySend();
+        // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
+        setTimeout(myAnswer, 1000);
     }
 })
 
-// cambio dell'ico in paper pulsante
+// cambio dell'icona microphone in paper pulsante
 // keyup si attiva quando sollevo il dito dal tasto
 $('#textBox').keyup(function(){
     // intercetto valore di input
@@ -58,4 +73,16 @@ function mySend() {
         // resetto il valore di input
         $('#textBox').val('');
     };
+}
+
+// creo una funzione per creare un messagio received da richiamare ogni volta
+function myAnswer() {
+    // clono il template messages
+    var new_msg = $('.template .message').clone();
+    // inserisco nello span giusto il testo 'ok'
+    new_msg.children('.message-text').text('ok');
+    // aggiungo al div la classe received
+    new_msg.addClass('received');
+    // inserisco il messaggio nel container
+    $('.right-messages.active').append(new_msg);
 }
