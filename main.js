@@ -17,6 +17,74 @@
 // contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo
 // “mar” rimangono solo Marco e Martina)
 
+// Milestone 3
+// ● Click sul contatto mostra la conversazione del contatto cliccato, è possibile inserire
+// nuovi messaggi per ogni conversazione
+// ● Cancella messaggio: cliccando sul messaggio appare un menu a tendina che
+// permette di cancellare il messaggio selezionato
+
+// per fare il primo punto, inizio creandomi i contatti grazie ad un template
+
+// creo più oggetti, mi interesseranno solo nome e immagine
+var michele_user = {
+    'nome': 'Michele',
+    'foto': 'avatar_1.jpg'
+};
+var fabio_user = {
+    'nome': 'Fabio',
+    'foto': 'avatar_2.jpg'
+};
+var samuele_user = {
+    'nome': 'Samuele',
+    'foto': 'avatar_3.jpg'
+};
+var alessandroB_user = {
+    'nome': 'Alessandro B.',
+    'foto': 'avatar_4.jpg'
+};
+var alessandroL_user = {
+    'nome': 'Alessandro L.',
+    'foto': 'avatar_5.jpg'
+};
+var claudia_user = {
+    'nome': 'Claudia',
+    'foto': 'avatar_6.jpg'
+};
+var davide_user = {
+    'nome': 'Davide',
+    'foto': 'avatar_7.jpg'
+};
+var federico_user = {
+    'nome': 'Federico',
+    'foto': 'avatar_8.jpg'
+};
+// li inserisco in un array
+var lista_utenti = [michele_user,fabio_user,samuele_user,alessandroB_user,alessandroL_user,claudia_user,davide_user,federico_user];
+// ciclo for per scorrere l'array
+for (var i = 0; i < lista_utenti.length; i++) {
+    // prendo il Nome
+    var nome_utente = lista_utenti[i].nome;
+    // prendo l'Immagine
+    var img = lista_utenti[i].foto;
+    // clono il mio template per i contatti
+    var contatto_appoggio = $('.template_contatti .myFriend').clone();
+    // all'interno del mio clone, cerco:
+    // 1)lo span per il nome e ci inserisco quello dell'oggetto
+    $(contatto_appoggio).find('p.account').text(nome_utente);
+    // 2)il tag immagine per assegnargi l'attributo src con la foto dell'oggetto
+    $(contatto_appoggio).find('img').attr('src', 'images/'+ img +'');
+    // inoltre gli aggiungo un data name per richiamarlo più insieme alla sua chat corrispondente
+    $(contatto_appoggio).attr('data-name', ''+ nome_utente +'');
+    // inserisco nel container
+    $('.myHistory').append(contatto_appoggio);
+    // creo un div per preparagli il campo nella chat view con un data che corrisponda al suo nome
+    var account_yard = "<div class=\"right-messages\" data-name=" + nome_utente + "></div>";
+    // lo mando dentro il div della chat
+    $('.chatWindow').append(account_yard);
+    // alla fine di ogni ciclo mi crea un contatto con un nome, un'immagine personalizzata,
+    // e un data-name identico a quello del suo div in Chatview, in modo da poterli collegare più tardi
+}
+
 // ricerca utenti
 // utilizzando la keyup function
 // la mySearching si svolge ogni volta che premo un tasto

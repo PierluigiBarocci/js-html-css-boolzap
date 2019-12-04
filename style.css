@@ -120,6 +120,7 @@
 }
 .contactPhoto img{
     height: 47px;
+    border-radius: 50%;
 }
 .myFriend .contactPhoto img {
     margin: 0 10px;
@@ -138,6 +139,12 @@
     height: 100%;
     width: 65%;
     border-left: 1px solid grey;
+}
+.right-messages {
+    display: none;
+}
+.right-messages.active {
+    display: block;
 }
 .banner {
     height: 60px;
@@ -211,6 +218,9 @@
     margin: 5px;
 }
 .template {
+    display: none;
+}
+.template_contatti {
     display: none;
 }
 .message .message-time {
