@@ -23,7 +23,6 @@
 // ● Cancella messaggio: cliccando sul messaggio appare un menu a tendina che
 // permette di cancellare il messaggio selezionato
 
-// per fare il primo punto, inizio creandomi i contatti grazie ad un template
 
 // creo più oggetti, mi interesseranno solo nome e immagine
 var michele_user = {
@@ -116,6 +115,36 @@ $('.myFriend').click(function(){
             }
         })
     }
+})
+
+// ● Cancella messaggio: cliccando sul messaggio appare un menu a tendina che
+// permette di cancellare il messaggio selezionato
+
+
+// intercetto il click sul pannellino
+// essendo elemento dinamico molto 'anarchico' usiamo il costrutto con document e on per intercettare quel click preciso
+// DA USARE CON PARSIMONIA!!!
+$(document).on('click', 'i.message-options', function(){
+    // richiamo il pannello di questa che ho cliccato
+    var pannello = $(this).next('.message-options-panel');
+    // se non è visibile
+    if (!pannello.is(':visible')) {
+        // nascondi tutti
+        $('.message-options-panel').hide();
+        // e mostra solo questo
+        pannello.show();
+        // intercetto il click sul tasto cancella
+    } else {
+        $('.message-options-panel').hide();
+    }
+    $('.message-destroy').click(function(){
+        // cancello questo messaggio
+        $(this).parent('.message-options-panel').parent('.message').remove();
+    })
+})
+// fa nascondere il pannello se si preme da un'altra parte
+$('.mainPage').on('click', function(){
+    $('.message-options-panel').hide();
 })
 
 
