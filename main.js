@@ -101,7 +101,14 @@ $('.myFriend').click(function(){
         $('.myFriend').removeClass('active');
         // a questo gli assegno la classe active
         $(this).addClass('active');
-        // ne estrapolo il data name
+        // nel frattempo cerco anche l'immagine
+        var immagine = $(this).find('img').attr('src');
+        // e il nome
+        var nome = $(this).find('p.account').text();
+        // e li schiaffo di prepotenza nel header della chat, problema risolto
+        $('#nome-header').text(nome);
+        $('#img-header').attr('src', immagine);
+        // estrapolo il data name del mio contatto
         var account_name = $(this).attr('data-name');
         // cerco il data-name corrispondente in chatwindows, frugandolo con una each
         $('.right-messages').each(function(){
