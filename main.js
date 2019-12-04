@@ -49,16 +49,12 @@ $('#searchFriends').keyup(function(){
 // invia messaggio, intercettando click sul bottone
 $('.icons').click(function(){
     mySend();
-    // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
-    setTimeout(myAnswer, 1000);
 });
 
 // invia messaggio, intercettando il tasto invio
 $('#textBox').keypress(function(event){
     if (event.which == 13) {
         mySend();
-        // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
-        setTimeout(myAnswer, 1000);
     }
 })
 
@@ -99,6 +95,8 @@ function mySend() {
         $('.right-messages.active').append(new_msg);
         // resetto il valore di input
         $('#textBox').val('');
+        // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
+        setTimeout(myAnswer, 1000);
     };
 };
 
