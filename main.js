@@ -38,12 +38,12 @@ var samuele_user = {
     'nome': 'Samuele',
     'foto': 'avatar_3.jpg'
 };
-var alessandroB_user = {
-    'nome': 'Alessandro B.',
+var alessandro_user = {
+    'nome': 'Alessandro',
     'foto': 'avatar_4.jpg'
 };
-var alessandroL_user = {
-    'nome': 'Alessandro L.',
+var pierluigi_user = {
+    'nome': 'Pierluigi',
     'foto': 'avatar_5.jpg'
 };
 var claudia_user = {
@@ -59,7 +59,7 @@ var federico_user = {
     'foto': 'avatar_8.jpg'
 };
 // li inserisco in un array
-var lista_utenti = [michele_user,fabio_user,samuele_user,alessandroB_user,alessandroL_user,claudia_user,davide_user,federico_user];
+var lista_utenti = [michele_user,fabio_user,samuele_user,alessandro_user,pierluigi_user,claudia_user,davide_user,federico_user];
 // ciclo for per scorrere l'array
 for (var i = 0; i < lista_utenti.length; i++) {
     // prendo il Nome
@@ -84,6 +84,42 @@ for (var i = 0; i < lista_utenti.length; i++) {
     // alla fine di ogni ciclo mi crea un contatto con un nome, un'immagine personalizzata,
     // e un data-name identico a quello del suo div in Chatview, in modo da poterli collegare più tardi
 }
+
+// appena creato tutto metto un active al primo elemento,
+// di modo che la pagina, appena aperta, abbia un account già attivo
+$('.myHistory').find('.myFriend').eq(0).addClass('active');
+// faccio la stessa cosa per la pagina chat corrispondente
+$('.chatWindow').find('.right-messages').eq(0).addClass('active');
+
+// ● Click sul contatto mostra la conversazione del contatto cliccato, è possibile inserire
+// nuovi messaggi per ogni conversazione
+
+// intercetto click del contatto
+$('.myFriend').click(function(){
+    // se questo non ha la classe active
+    if (!$(this).hasClass('active')) {
+        // tolgo le classe active a tutti
+        $('.myFriend').removeClass('active');
+        // a questo gli assegno la classe active
+        $(this).addClass('active');
+        // ne estrapolo il data name
+        var account_name = $(this).attr('data-name');
+        // cerco il data-name corrispondente in chatwindows, frugandolo con una each
+        $('.right-messages').each(function(){
+            // se il data-name associato a questa chat è identico a quello dello user cliccato, mostralo
+            if ($(this).attr('data-name') == account_name) {
+                $(this).addClass('active');
+            }
+            // altrimenti togli la classe active
+            else {
+                $(this).removeClass('active');
+            }
+        })
+    }
+})
+
+
+
 
 // ricerca utenti
 // utilizzando la keyup function

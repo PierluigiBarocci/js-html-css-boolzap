@@ -100,6 +100,12 @@
     align-items: center;
     justify-content: flex-start;
     font-size: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.myFriend:hover {
+    background-color: pink;
+    transition: 0.2s;
 }
 .myFriend.active {
     background-color: lightblue;
