@@ -3,6 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+}
+body {
     font-size: 14px;
 }
 /* General Layout Styling */
@@ -23,7 +25,7 @@
 .mainPage {
     height: 90%;
     width: 80%;
-    min-width: 800px;
+    min-width: 900px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -59,7 +61,7 @@
 .searchbar {
     height: 40px;
     width: 100%;
-    background-color: lightgrey;
+    background-color: #EAEAEA;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -99,12 +101,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 10px;
     cursor: pointer;
     transition: 0.2s;
 }
 .myFriend:hover {
-    background-color: pink;
+    background-color: #EAEAEA;
     transition: 0.2s;
 }
 .myFriend.active {
@@ -155,7 +156,7 @@
 .banner {
     height: 60px;
     width: 100%;
-    background-color: pink;
+    background-color: #EAEAEA;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -194,6 +195,9 @@
     display: none;
 	color: #B6B9BB;
 	cursor: pointer;
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
 }
 .right-messages .message .message-options-panel {
 	display: none;
@@ -238,7 +242,7 @@
 	clear:both;
 }
 .right-messages .message.sent {
-	background: green;
+	background: #D5F9BA;
 	float: right;
 	clear:both;
 }
