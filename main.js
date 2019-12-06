@@ -188,15 +188,38 @@ $('#searchFriends').keyup(function(){
 
 // invia messaggio, intercettando click sul bottone
 $('.icons').click(function(){
-    mySend();
+    // al click leggo il valore dell'input
+    var testo = $('#textBox').val();
+    // se non è vuoto
+    if (testo.length != 0) {
+        // chiamo la funzione myMessage e le do in pasto l'input ricevuto e la classe sent
+        myMessage(testo,'sent');
+        // essendo dentro questa condizione, so che avrò bisogno anche di una risposta automatica
+        // il setTimeout, impostato con 1 secondo di ritardo, chiama myMessagge con una risposta prestabilita e la classe received
+        setTimeout(function(){
+            myMessage('ok','received');
+        }, 1000);
+        // prima di chiudere pulisco la barra degli input
+        $('#textBox').val('');
+    }
+    // quell'if all'inizio fa tutta la differenza del mondo, perchè fuori da lì, giustamente, non deve succedere niente.
 });
 
 // invia messaggio, intercettando il tasto invio
 $('#textBox').keypress(function(event){
+    // stesso procedimento visto sopra, la differenza è che qui l'evento scatenante
+    // è la pressione del tasto Enter della tastiera
     if (event.which == 13) {
-        mySend();
+        var testo = $('#textBox').val();
+        if (testo.length != 0) {
+            myMessage(testo,'sent');
+            setTimeout(function(){
+                myMessage('ok','received');
+            }, 1000);
+            $('#textBox').val('');
+        }
     }
-})
+});
 
 // cambio dell'icona microphone in paper pulsante
 // keyup si attiva quando sollevo il dito dal tasto
@@ -218,40 +241,19 @@ $('#textBox').keyup(function(){
 
 //  FUNZIONI //
 
-// funzione per creare un messagio sent da richiamare ogni volta
+// funzione per gestire il flusso dei messaggi
 
-function mySend() {
-    // intercetto il valore dell'input
-    var testo = $('#textBox').val();
-    // se il valore dell'input c'e` (quindi non è vuoto)
-    if (testo.length != 0) {
+function myMessage(text, job) {
         // clono il template messages
         var new_msg = $('.template .message').clone();
         // inserisco nello span giusto il testo
-        new_msg.children('.message-text').text(testo);
-        // aggiungo al div la classe send
-        new_msg.addClass('sent');
+        new_msg.children('.message-text').text(text);
+        // aggiungo al div la classe che desidero
+        new_msg.addClass(job);
         // inserisco il messaggio nel container
         $('.right-messages.active').append(new_msg);
-        // resetto il valore di input
-        $('#textBox').val('');
-        // setTimeout per richiamare la funziona risposta, ritardo di 1000ms (1 secondo)
-        setTimeout(myAnswer, 1000);
-    };
-};
+}
 
-// funzione per creare un messagio received da richiamare ogni volta
-
-function myAnswer() {
-    // clono il template messages
-    var new_msg = $('.template .message').clone();
-    // inserisco nello span giusto il testo 'ok'
-    new_msg.children('.message-text').text('ok');
-    // aggiungo al div la classe received
-    new_msg.addClass('received');
-    // inserisco il messaggio nel container
-    $('.right-messages.active').append(new_msg);
-};
 
 // funzione per scorgere attraverso gli account e mostrare o nascondere le corrispondenze
 
