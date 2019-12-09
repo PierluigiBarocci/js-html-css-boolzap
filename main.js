@@ -25,40 +25,41 @@
 
 
 // creo più oggetti, mi interesseranno solo nome e immagine
-var michele_user = {
-    'nome': 'Michele',
-    'foto': 'avatar_1.jpg'
-};
-var fabio_user = {
-    'nome': 'Fabio',
-    'foto': 'avatar_2.jpg'
-};
-var samuele_user = {
-    'nome': 'Samuele',
-    'foto': 'avatar_3.jpg'
-};
-var alessandro_user = {
-    'nome': 'Alessandro',
-    'foto': 'avatar_4.jpg'
-};
-var pierluigi_user = {
-    'nome': 'Pierluigi',
-    'foto': 'avatar_5.jpg'
-};
-var claudia_user = {
-    'nome': 'Claudia',
-    'foto': 'avatar_6.jpg'
-};
-var davide_user = {
-    'nome': 'Davide',
-    'foto': 'avatar_7.jpg'
-};
-var federico_user = {
-    'nome': 'Federico',
-    'foto': 'avatar_8.jpg'
-};
 // li inserisco in un array
-var lista_utenti = [michele_user,fabio_user,samuele_user,alessandro_user,pierluigi_user,claudia_user,davide_user,federico_user];
+var lista_utenti = [
+    {
+        'nome': 'Michele',
+        'foto': 'avatar_1.jpg'
+    },
+    {
+        'nome': 'Fabio',
+        'foto': 'avatar_2.jpg'
+    },
+    {
+        'nome': 'Samuele',
+        'foto': 'avatar_3.jpg'
+    },
+    {
+        'nome': 'Alessandro',
+        'foto': 'avatar_4.jpg'
+    },
+    {
+        'nome': 'Pierluigi',
+        'foto': 'avatar_5.jpg'
+    },
+    {
+        'nome': 'Claudia',
+        'foto': 'avatar_6.jpg'
+    },
+    {
+        'nome': 'Davide',
+        'foto': 'avatar_7.jpg'
+    },
+    {
+        'nome': 'Federico',
+        'foto': 'avatar_8.jpg'
+    },
+];
 // ciclo for per scorrere l'array
 for (var i = 0; i < lista_utenti.length; i++) {
     // prendo il Nome
