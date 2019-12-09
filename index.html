@@ -84,23 +84,23 @@
     				<span class="message-time">17:31</span>
     			</div>
     		</div>
-            <div class="template_contatti">
-                <div class="myFriend">
-                    <div class="contactPhoto">
-                        <img alt="photo">
+        </div>
+        <script id="template_contatti" type="text/x-handlebars-template">
+            <div class="{{ classe }}" data-name="{{ nome }}">
+                <div class="contactPhoto">
+                    <img src="images/{{ foto }}" alt="photo">
+                </div>
+                <div class="contactText">
+                    <div class="contactName">
+                        <p class="account">{{nome}}</p>
+                        <p><small>Non poteva essere altrimenti</small></p>
                     </div>
-                    <div class="contactText">
-                        <div class="contactName">
-                            <p class="account"></p>
-                            <p><small>Non poteva essere altrimenti</small></p>
-                        </div>
-                        <div class="clock">
-                            <p><small>17:53</small></p>
-                        </div>
+                    <div class="clock">
+                        <p><small>17:53</small></p>
                     </div>
                 </div>
             </div>
-        </div>
+        </script>
         <script src="main.js" charset="utf-8"></script>
     </body>
 </html>

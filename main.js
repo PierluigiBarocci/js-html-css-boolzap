@@ -24,61 +24,67 @@
 // permette di cancellare il messaggio selezionato
 
 
-// creo più oggetti, mi interesseranno solo nome e immagine
+// creo più oggetti, mi interesseranno solo nome,immagine e classe
 // li inserisco in un array
 var lista_utenti = [
     {
         'nome': 'Michele',
-        'foto': 'avatar_1.jpg'
+        'foto': 'avatar_1.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Fabio',
-        'foto': 'avatar_2.jpg'
+        'foto': 'avatar_2.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Samuele',
-        'foto': 'avatar_3.jpg'
+        'foto': 'avatar_3.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Alessandro',
-        'foto': 'avatar_4.jpg'
+        'foto': 'avatar_4.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Pierluigi',
-        'foto': 'avatar_5.jpg'
+        'foto': 'avatar_5.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Claudia',
-        'foto': 'avatar_6.jpg'
+        'foto': 'avatar_6.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Davide',
-        'foto': 'avatar_7.jpg'
+        'foto': 'avatar_7.jpg',
+        'classe': 'myFriend'
     },
     {
         'nome': 'Federico',
-        'foto': 'avatar_8.jpg'
+        'foto': 'avatar_8.jpg',
+        'classe': 'myFriend'
     },
 ];
+
+
+// Handlebars
+
 // ciclo for per scorrere l'array
 for (var i = 0; i < lista_utenti.length; i++) {
-    // prendo il Nome
-    var nome_utente = lista_utenti[i].nome;
-    // prendo l'Immagine
-    var img = lista_utenti[i].foto;
-    // clono il mio template per i contatti
-    var contatto_appoggio = $('.template_contatti .myFriend').clone();
-    // all'interno del mio clone, cerco:
-    // 1)lo span per il nome e ci inserisco quello dell'oggetto
-    $(contatto_appoggio).find('p.account').text(nome_utente);
-    // 2)il tag immagine per assegnargi l'attributo src con la foto dell'oggetto
-    $(contatto_appoggio).find('img').attr('src', 'images/'+ img +'');
-    // inoltre gli aggiungo un data name per richiamarlo più insieme alla sua chat corrispondente
-    $(contatto_appoggio).attr('data-name', ''+ nome_utente +'');
-    // inserisco nel container
-    $('.myHistory').append(contatto_appoggio);
+    // prendo il template
+    var template_html = $('#template_contatti').html();
+    // richiamo il compile di Handlebars
+    var template_function = Handlebars.compile(template_html);
+    // essendo dentro il for, ad ogni ciclo prendo in considerazione un oggetto,
+    // che ha già nome,foto e classe, li do in pasto al compile
+    var contatto_finale = template_function(lista_utenti[i]);
+    // appendo in .myHistory il contatto creato
+    $('.myHistory').append(contatto_finale);
     // creo un div per preparagli il campo nella chat view con un data che corrisponda al suo nome
-    var account_yard = "<div class=\"right-messages\" data-name=" + nome_utente + "></div>";
+    var account_yard = "<div class=\"right-messages\" data-name=" + lista_utenti[i].nome + "></div>";
     // lo mando dentro il div della chat
     $('.chatWindow').append(account_yard);
     // alla fine di ogni ciclo mi crea un contatto con un nome, un'immagine personalizzata,
