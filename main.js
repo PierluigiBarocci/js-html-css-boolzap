@@ -251,14 +251,20 @@ $('#textBox').keyup(function(){
 // funzione per gestire il flusso dei messaggi
 
 function myMessage(text, job) {
-        // clono il template messages
-        var new_msg = $('.template .message').clone();
-        // inserisco nello span giusto il testo
-        new_msg.children('.message-text').text(text);
-        // aggiungo al div la classe che desidero
-        new_msg.addClass(job);
-        // inserisco il messaggio nel container
-        $('.right-messages.active').append(new_msg);
+        // prendo il template dei messaggi
+        var template_html = $('#template_messaggi').html();
+        // richiamo il compile di Handlebars
+        var template_function = Handlebars.compile(template_html);
+        // creo una variabile messaggio, che avrà come testo il text della funzione (che a sua volta dipenderà
+        // da come verrà usata questa funzione), e la classe sarà message più sent o received
+        var messaggio = {
+            'testo': text,
+            'classe': 'message ' + job
+        }
+        // metto in funzione il messaggio che ho creato
+        var messaggio_finale = template_function(messaggio);
+        // appendo nella Chatview il messaggio creato
+        $('.right-messages.active').append(messaggio_finale);
 }
 
 

@@ -73,17 +73,6 @@
                     </div>
                 </div>
             </div>
-            <div class="template">
-    			<div class="message">
-    				<span class="message-text">Inserisci il messaggio con js</span>
-    				<i class="fa fa-chevron-down f-right message-options"></i>
-                    <div class="message-options-panel">
-                        <div class="message-info">Info messaggio</div>
-                        <div class="message-destroy">Cancella messaggio</div>
-                    </div>
-    				<span class="message-time">17:31</span>
-    			</div>
-    		</div>
         </div>
         <script id="template_contatti" type="text/x-handlebars-template">
             <div class="{{ classe }}" data-name="{{ nome }}">
@@ -99,6 +88,17 @@
                         <p><small>17:53</small></p>
                     </div>
                 </div>
+            </div>
+        </script>
+        <script id="template_messaggi" type="text/x-handlebars-template">
+            <div class="{{ classe }}">
+                <span class="message-text">{{testo}}</span>
+                <i class="fa fa-chevron-down f-right message-options"></i>
+                <div class="message-options-panel">
+                    <div class="message-info">Info messaggio</div>
+                    <div class="message-destroy">Cancella messaggio</div>
+                </div>
+                <span class="message-time">17:31</span>
             </div>
         </script>
         <script src="main.js" charset="utf-8"></script>
